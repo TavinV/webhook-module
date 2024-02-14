@@ -1,4 +1,5 @@
 # Roblox to Discord integration module.
+This module uses OOP to facilitate the use of Webhooks to send messages to discord trough Roblox. 
 
 ## How to use it?
 
@@ -64,3 +65,4 @@ end
 WebhookService.OnPostError = MyErrorHandler
 
 ```
+
