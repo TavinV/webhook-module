@@ -11,7 +11,6 @@ Require the module using it's path in the explorer, then create a new _webhook_ 
 local WebhookService = require("Module's path").WebhookService
 local webhook1 = WebhookService.new("Webhook's name","Webhook's url")
 
-
 ```
 
 ### Posting simple messages
@@ -21,6 +20,7 @@ To post use the _:Post_ method in the webhook objet as shown
 
 ```lua
 webhook1:Post("Hello World!") -- Posts "Hello World", no formating.
+
 ```
 
 ## Creating an embed
@@ -49,4 +49,18 @@ NewEmbed:AddField("Field 1","Value 1",true) -- Add fields to the embed
 NewEmbed:AddField("Field 2", "Value 2", true) -- The first 
 
 webhook1:Post(NewEmbed)
+
+```
+
+### Error handler
+
+The module includes an built-in error handler, but you can change that function to handle it the way you wish.
+
+```lua
+function MyErrorHandler(webhook_object, error_message)
+    print(webhook_object.." Failed to post, \n [error]: "..error_message)
+end
+
+WebhookService.OnPostError = MyErrorHandler
+
 ```
