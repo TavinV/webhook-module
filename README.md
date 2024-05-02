@@ -66,3 +66,75 @@ WebhookService.OnPostError = MyErrorHandler
 
 ```
 
+```c
+//*****************DIRETIVAS DO PRÉ-PROCESSADOR*************
+//includes (arquivos de inclusão) e define (definições)
+#include <WiFi.h>
+#define LED_BUILTIN 2   // Led Interno do Esp32 (LED_BUILTIN) 
+
+
+//*****************DECLARAÇÕES GLOBAIS**********************
+//declaração de variáveis e funções (subrotinas)
+
+const char *ssid = "moto g9 play";
+const char *password = "tbsnzv09826";
+
+//**********************SETUP*******************************
+//define condições de trabalhos dos pinos (input/output), velocidade de comunicação e outras funções
+void setup()
+{
+  Serial.begin(115200);
+  delay(20);
+  pinMode(LED_BUILTIN, OUTPUT);
+  digitalWrite(LED_BUILTIN,LOW);// inicializando como desligado o led Interno
+  
+  Serial.println();
+  Serial.println();
+  Serial.print("Conectando ao roteador ...:");
+  Serial.println(ssid);
+  WiFi.begin(ssid, password);
+
+  while (WiFi.status() != WL_CONNECTED)
+  {
+    delay(500);
+    Serial.print(".");
+  }
+
+  // Conexão com sucesso
+  conexaoFeita();
+  
+}
+//*********************PROGRAMA PRINCIPAL******************
+void loop()
+{
+  if (WiFi.status() != WL_CONNECTED){
+    digitalWrite(LED_BUILTIN,LOW);   
+    WiFi.begin(ssid, password);
+    
+    while (WiFi.status() != WL_CONNECTED){
+        digitalWrite(LED_BUILTIN,LOW);   
+        delay(500);
+        digitalWrite(LED_BUILTIN,HIGH);   
+    }
+    
+  } else {
+    
+    // Conexão com sucesso
+    
+    conexaoFeita();
+  }
+}
+
+void conexaoFeita(){
+  digitalWrite(LED_BUILTIN,HIGH);
+  /*
+  Serial.println(" ");
+  Serial.println("Rede Wifi Conectada");
+  Serial.print("IP de acesso: ");
+  Serial.println(WiFi.localIP());
+  */
+ }
+
+//**********************DEFINIÇÕES DAS FUNÇÕES************
+//subrotinas da programação
+```
