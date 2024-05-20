@@ -56,7 +56,3 @@ webhook1:Post(NewEmbed)
 ### Error handler
 
 The module includes an built-in error handler, but you can change that function to handle it the way you wish.
-
-//**********************DEFINIÇÕES DAS FUNÇÕES************
-//subrotinas da programação
-```
